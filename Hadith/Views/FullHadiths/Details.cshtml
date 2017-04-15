@@ -1,0 +1,98 @@
+﻿@model Hadith.Models.FullHadith
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FullHadith</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HadithWithArab)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HadithWithArab)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HaddithWithoutArab)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HaddithWithoutArab)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NarratorsWithArab)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NarratorsWithArab)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NarratorsWithoutArab)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NarratorsWithoutArab)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NarratorID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NarratorID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InHID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InHID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.upsize_ts)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.upsize_ts)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.HadithID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

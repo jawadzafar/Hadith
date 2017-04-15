@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="AuthorID" Type="int" />
+          <Property Name="BookID" Type="int" />
+          <Property Name="BookName" Type="ntext" />
+          <Property Name="StartID" Type="int" />
+          <Property Name="EndID" Type="int" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="upsize_ts" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Chains">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NWA" Type="ntext" />
+          <Property Name="NWOA" Type="ntext" />
+          <Property Name="NID" Type="ntext" />
+          <Property Name="HID" Type="int" />
+          <Property Name="ChainNo" Type="int" />
+          <Property Name="upsize_ts" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Bukhari DataSQL.dbo.Chapter' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Chapter">
+          <Property Name="BookID" Type="ntext" />
+          <Property Name="ChapterID" Type="ntext" />
+          <Property Name="ChapterName" Type="ntext" />
+          <Property Name="StartiD" Type="ntext" />
+          <Property Name="EndID" Type="ntext" />
+          <Property Name="ID" Type="int" />
+        </EntityType>-->
+        <EntityType Name="FullHadith">
+          <Key>
+            <PropertyRef Name="HadithID" />
+          </Key>
+          <Property Name="HadithID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HadithWithArab" Type="ntext" />
+          <Property Name="HaddithWithoutArab" Type="ntext" />
+          <Property Name="NarratorsWithArab" Type="ntext" />
+          <Property Name="NarratorsWithoutArab" Type="ntext" />
+          <Property Name="HID" Type="int" />
+          <Property Name="CID" Type="int" />
+          <Property Name="BID" Type="int" />
+          <Property Name="NarratorID" Type="ntext" />
+          <Property Name="InHID" Type="nvarchar" MaxLength="255" />
+          <Property Name="upsize_ts" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Bukhari DataSQL.dbo.Narrator' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Narrator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="NarratorID" Type="int" />
+          <Property Name="NarratorNameWithArab" Type="ntext" />
+          <Property Name="NarratorNameWithoutArab" Type="ntext" />
+          <Property Name="HID" Type="int" />
+          <Property Name="ChainNo" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Bukhari DataSQL.dbo.Paste Errors' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Paste Errors">
+          <Property Name="Field0" Type="ntext" />
+          <Property Name="Field1" Type="ntext" />
+          <Property Name="Field2" Type="ntext" />
+          <Property Name="Field3" Type="ntext" />
+          <Property Name="Field4" Type="ntext" />
+          <Property Name="Field5" Type="ntext" />
+          <Property Name="Field6" Type="ntext" />
+          <Property Name="Field7" Type="ntext" />
+          <Property Name="Field8" Type="ntext" />
+        </EntityType>-->
+        <EntityType Name="UniqueChains">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NarratorID" Type="ntext" />
+          <Property Name="NarratorWithArab" Type="ntext" />
+          <Property Name="NarratorWithoutArab" Type="ntext" />
+          <Property Name="upsize_ts" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="UniqueNarrators">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="NarratorID" Type="int" />
+          <Property Name="NarratorWithArab" Type="ntext" />
+          <Property Name="NarratorWithoutArab" Type="ntext" />
+          <Property Name="RName" Type="nvarchar" MaxLength="255" />
+          <Property Name="upsize_ts" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Chains" EntityType="Self.Chains" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FullHadith" EntityType="Self.FullHadith" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UniqueChains" EntityType="Self.UniqueChains" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UniqueNarrators" EntityType="Self.UniqueNarrators" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Narrator" EntityType="Self.Narrator" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Narrator].[Id] AS [Id], 
+    [Narrator].[NarratorID] AS [NarratorID], 
+    [Narrator].[NarratorNameWithArab] AS [NarratorNameWithArab], 
+    [Narrator].[NarratorNameWithoutArab] AS [NarratorNameWithoutArab], 
+    [Narrator].[HID] AS [HID], 
+    [Narrator].[ChainNo] AS [ChainNo]
+    FROM [dbo].[Narrator] AS [Narrator]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="AuthorID" Type="Int32" />
+          <Property Name="BookID" Type="Int32" />
+          <Property Name="BookName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StartID" Type="Int32" />
+          <Property Name="EndID" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="upsize_ts" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Chain">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NWA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NWOA" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HID" Type="Int32" />
+          <Property Name="ChainNo" Type="Int32" />
+          <Property Name="upsize_ts" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="FullHadith">
+          <Key>
+            <PropertyRef Name="HadithID" />
+          </Key>
+          <Property Name="HadithID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HadithWithArab" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HaddithWithoutArab" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NarratorsWithArab" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NarratorsWithoutArab" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HID" Type="Int32" />
+          <Property Name="CID" Type="Int32" />
+          <Property Name="BID" Type="Int32" />
+          <Property Name="NarratorID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="InHID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="upsize_ts" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="UniqueChain">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NarratorID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NarratorWithArab" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NarratorWithoutArab" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="upsize_ts" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="UniqueNarrator">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="NarratorID" Type="Int32" />
+          <Property Name="NarratorWithArab" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NarratorWithoutArab" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="upsize_ts" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Narrator">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="NarratorID" Type="Int32" />
+          <Property Name="NarratorNameWithArab" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NarratorNameWithoutArab" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HID" Type="Int32" />
+          <Property Name="ChainNo" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="Bukhari_DataSQLEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Books" EntityType="Self.Book" />
+          <EntitySet Name="Chains" EntityType="Self.Chain" />
+          <EntitySet Name="FullHadiths" EntityType="Self.FullHadith" />
+          <EntitySet Name="UniqueChains" EntityType="Self.UniqueChain" />
+          <EntitySet Name="UniqueNarrators" EntityType="Self.UniqueNarrator" />
+          <EntitySet Name="Narrators" EntityType="Self.Narrator" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Bukhari_DataSQLEntities">
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="Model.Book">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+                <ScalarProperty Name="BookName" ColumnName="BookName" />
+                <ScalarProperty Name="StartID" ColumnName="StartID" />
+                <ScalarProperty Name="EndID" ColumnName="EndID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="upsize_ts" ColumnName="upsize_ts" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Chains">
+            <EntityTypeMapping TypeName="Model.Chain">
+              <MappingFragment StoreEntitySet="Chains">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NWA" ColumnName="NWA" />
+                <ScalarProperty Name="NWOA" ColumnName="NWOA" />
+                <ScalarProperty Name="NID" ColumnName="NID" />
+                <ScalarProperty Name="HID" ColumnName="HID" />
+                <ScalarProperty Name="ChainNo" ColumnName="ChainNo" />
+                <ScalarProperty Name="upsize_ts" ColumnName="upsize_ts" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FullHadiths">
+            <EntityTypeMapping TypeName="Model.FullHadith">
+              <MappingFragment StoreEntitySet="FullHadith">
+                <ScalarProperty Name="HadithID" ColumnName="HadithID" />
+                <ScalarProperty Name="HadithWithArab" ColumnName="HadithWithArab" />
+                <ScalarProperty Name="HaddithWithoutArab" ColumnName="HaddithWithoutArab" />
+                <ScalarProperty Name="NarratorsWithArab" ColumnName="NarratorsWithArab" />
+                <ScalarProperty Name="NarratorsWithoutArab" ColumnName="NarratorsWithoutArab" />
+                <ScalarProperty Name="HID" ColumnName="HID" />
+                <ScalarProperty Name="CID" ColumnName="CID" />
+                <ScalarProperty Name="BID" ColumnName="BID" />
+                <ScalarProperty Name="NarratorID" ColumnName="NarratorID" />
+                <ScalarProperty Name="InHID" ColumnName="InHID" />
+                <ScalarProperty Name="upsize_ts" ColumnName="upsize_ts" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UniqueChains">
+            <EntityTypeMapping TypeName="Model.UniqueChain">
+              <MappingFragment StoreEntitySet="UniqueChains">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NarratorID" ColumnName="NarratorID" />
+                <ScalarProperty Name="NarratorWithArab" ColumnName="NarratorWithArab" />
+                <ScalarProperty Name="NarratorWithoutArab" ColumnName="NarratorWithoutArab" />
+                <ScalarProperty Name="upsize_ts" ColumnName="upsize_ts" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UniqueNarrators">
+            <EntityTypeMapping TypeName="Model.UniqueNarrator">
+              <MappingFragment StoreEntitySet="UniqueNarrators">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NarratorID" ColumnName="NarratorID" />
+                <ScalarProperty Name="NarratorWithArab" ColumnName="NarratorWithArab" />
+                <ScalarProperty Name="NarratorWithoutArab" ColumnName="NarratorWithoutArab" />
+                <ScalarProperty Name="RName" ColumnName="RName" />
+                <ScalarProperty Name="upsize_ts" ColumnName="upsize_ts" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Narrators">
+            <EntityTypeMapping TypeName="Model.Narrator">
+              <MappingFragment StoreEntitySet="Narrator">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NarratorID" ColumnName="NarratorID" />
+                <ScalarProperty Name="NarratorNameWithArab" ColumnName="NarratorNameWithArab" />
+                <ScalarProperty Name="NarratorNameWithoutArab" ColumnName="NarratorNameWithoutArab" />
+                <ScalarProperty Name="HID" ColumnName="HID" />
+                <ScalarProperty Name="ChainNo" ColumnName="ChainNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
